@@ -2,8 +2,8 @@
 
 #### Setup
 Requirements: **python3**, **pip3**, **venv**
-1. Create a new virtual environment: `python3 -m venv scorer`
-2. Activate env: `source scorer/bin.activate`
+1. Create a new virtual environment: `python3 -m venv scorenv`
+2. Activate env: `source scorenv/bin.activate`
 3. Install required python packages: `pip3 install -r requirements.txt`
 4. Run: `python3 main-gui.py`
 
