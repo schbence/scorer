@@ -1,0 +1,22 @@
+{
+  "channel_configs": {
+    "zmax": {
+      "EEG": {"ch": 0, "ref": "", "filt": [0.1, 25]}
+    },
+    "mentalab": {
+      "EEG": {"ch": 0, "ref": 1, "filt": [0.1, 30]},
+      "EMG": {"ch": 2, "ref": 3},
+      "EOG": {"ch": 5}
+    },
+    "empty": {
+      "EEG": {"ch": "", "ref": "", "filt": ["", ""]},
+      "EMG": {"ch": "", "ref": "", "filt": ["", ""]},
+      "EOG": {"ch": "", "ref": "", "filt": ["", ""]}
+    }
+  },
+  "file_configs": {
+    "output_dir": "./hypnos",
+    "history_file": "./history.log",
+    "error_file": "./errors.log"
+  }
+}
