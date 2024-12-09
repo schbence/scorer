@@ -1,6 +1,12 @@
 from mne.io import read_raw_edf, read_raw_bdf, RawArray
 from mne import create_info
-from mne.filter import filter_data
+from mne.filter import design_mne_c_filter
+import traceback
+from numpy import convolve
+
+def bandpass(signal, lowcut, highcut, fs):
+    kernel = design_mne_c_filter(fs, l_freq=lowcut, h_freq=highcut)
+    return convolve(kernel, signal, mode='vaild')
 
 def load_preproc_data(fname, config):
     data = read_raw_bdf(fname) if fname.endswith('.bdf') else read_raw_edf(fname)
@@ -12,7 +18,6 @@ def load_preproc_data(fname, config):
                 data_preproc = channel_data
             else:
                 data_preproc.add_channels([channel_data])
-
     return data_preproc
 
 def preprocess_channel(data, name, ch_config):
@@ -37,12 +42,13 @@ def preprocess_channel(data, name, ch_config):
         print('Filter ok')
         print(freq_low, freq_high)
         print('Fl %.2f, Fh %2.f' % (freq_low, freq_high))
-        signal = filter_data(signal, sfreq, freq_low, freq_high)
+        print(len(signal))
+        signal = [bandpass(signal[0], freq_low, freq_high, sfreq)]
+        print(len(signal))
     except Exception as e:
         print(e)
-        print('No filter')
-
+        print('No filter:')
+        print(traceback.format_exc())
 
     new_info = create_info([name], ch_types=['eeg'], sfreq=sfreq)
-
     return RawArray(signal, new_info)
