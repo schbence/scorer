@@ -42,12 +42,10 @@ def preprocess_channel(data, name, ch_config):
         print('Filter ok')
         print(freq_low, freq_high)
         print('Fl %.2f, Fh %2.f' % (freq_low, freq_high))
-        print(len(signal))
         signal = [bandpass(signal[0], freq_low, freq_high, sfreq)]
-        print(len(signal))
     except Exception as e:
         print(e)
-        print('No filter:')
+        print('No filter, exception:')
         print(traceback.format_exc())
 
     new_info = create_info([name], ch_types=['eeg'], sfreq=sfreq)
