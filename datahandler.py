@@ -6,7 +6,7 @@ from numpy import convolve
 
 def bandpass(signal, lowcut, highcut, fs):
     kernel = design_mne_c_filter(fs, l_freq=lowcut, h_freq=highcut)
-    return convolve(kernel, signal, mode='vaild')
+    return convolve(kernel, signal, mode='same')
 
 def load_preproc_data(fname, config):
     data = read_raw_bdf(fname) if fname.endswith('.bdf') else read_raw_edf(fname)
