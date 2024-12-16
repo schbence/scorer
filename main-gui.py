@@ -285,7 +285,7 @@ init_header(settings_frame)
 
 # Settings
 eeg_row = channel_input_row(settings_frame, 'EEG', 1, eeg_vars)
-eog_row = channel_input_row(settings_frame, 'ECG', 2, eog_vars)
+eog_row = channel_input_row(settings_frame, 'EOG', 2, eog_vars)
 emg_row = channel_input_row(settings_frame, 'EMG', 3, emg_vars)
 
 # Start score frame
